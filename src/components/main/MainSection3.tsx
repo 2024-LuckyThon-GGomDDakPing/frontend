@@ -3,6 +3,7 @@ import btn2 from "../../assets/btn2.png";
 import "aos/dist/aos.css";
 import AOS from "aos";
 import { useEffect } from "react";
+import { Link } from "react-router-dom";
 
 export default function MainSection3() {
   useEffect(() => {
@@ -23,10 +24,12 @@ export default function MainSection3() {
               <p className="text-white text-muted-foreground">원하는 버튼을 선택하세요</p>
             </div>
             <div className="flex items-center justify-center gap-16 text-white">
-              <button className="flex items-center justify-center w-[350px] h-[120px] text-xl bg-white/10 rounded-lg hover:scale-105">
-                <img src={btn1} alt="btn" className="w-8 h-8 mr-2" />
-                퀴즈 생성하기
-              </button>
+              <Link to="/createquiz">
+                <button className="flex items-center justify-center w-[350px] h-[120px] text-xl bg-white/10 rounded-lg hover:scale-105">
+                  <img src={btn1} alt="btn" className="w-8 h-8 mr-2" />
+                  퀴즈 생성하기
+                </button>
+              </Link>
               <button className="flex items-center justify-center w-[350px] h-[120px] text-xl bg-white/10 rounded-lg hover:scale-105">
                 <img src={btn2} alt="btn" className="w-8 h-8 mr-2" />
                 퀴즈 풀기
