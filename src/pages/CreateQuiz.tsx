@@ -92,7 +92,7 @@ export default function CreateQuiz() {
             />
           ))}
           <button type="submit" className="w-32 h-12 text-lg bg-white/20 rounded-xl">
-            저장
+            등록
           </button>
         </div>
       </div>

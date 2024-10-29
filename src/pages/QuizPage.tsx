@@ -47,6 +47,9 @@ export default function QuizPage() {
               isSelected={selectedAnswers[index]}
             />
           ))}
+          <button type="submit" className="w-32 h-12 text-lg bg-white/20 rounded-xl">
+            제출
+          </button>
         </div>
       </div>
     </div>
