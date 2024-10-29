@@ -1,8 +1,8 @@
 import Main from "../assets/bg.png";
 import Navbar from "../components/Navbar";
 import Quiz from "../components/createquiz/Quiz";
-import InputField from "../components/createquiz/InputField"; // 새 컴포넌트 임포트
-import { useState } from "react";
+import InputField from "../components/createquiz/InputField";
+import { useEffect, useState } from "react";
 
 export default function CreateQuiz() {
   const [inputs, setInputs] = useState({
@@ -51,6 +51,9 @@ export default function CreateQuiz() {
     handleQuizInputChange(index, "");
   };
 
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   return (
     <div>
       <div
