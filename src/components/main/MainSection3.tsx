@@ -30,10 +30,12 @@ export default function MainSection3() {
                   퀴즈 생성하기
                 </button>
               </Link>
-              <button className="flex items-center justify-center w-[350px] h-[120px] text-xl bg-white/10 rounded-lg hover:scale-105">
-                <img src={btn2} alt="btn" className="w-8 h-8 mr-2" />
-                퀴즈 풀기
-              </button>
+              <Link to="/list">
+                <button className="flex items-center justify-center w-[350px] h-[120px] text-xl bg-white/10 rounded-lg hover:scale-105">
+                  <img src={btn2} alt="btn" className="w-8 h-8 mr-2" />
+                  퀴즈 풀기
+                </button>
+              </Link>
             </div>
           </div>
         </div>
