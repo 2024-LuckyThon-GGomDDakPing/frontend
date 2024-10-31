@@ -2,6 +2,7 @@ import { useState } from "react";
 import Main from "../assets/bg.png";
 import Navbar from "../components/Navbar";
 import QuizProblem from "../components/quiz/QuizProblem";
+import { Link } from "react-router-dom";
 
 let quiz = {
   memberId: 1,
@@ -47,9 +48,11 @@ export default function QuizPage() {
               isSelected={selectedAnswers[index]}
             />
           ))}
-          <button type="submit" className="w-32 h-12 text-lg bg-white/20 rounded-xl">
-            제출
-          </button>
+          <Link to="/result">
+            <button type="submit" className="w-32 h-12 text-lg bg-white/20 rounded-xl">
+              제출
+            </button>
+          </Link>
         </div>
       </div>
     </div>

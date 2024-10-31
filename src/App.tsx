@@ -6,6 +6,8 @@ import LoginPage from "./pages/LoginPage";
 import "./index.css";
 import CreateQuiz from "./pages/CreateQuiz";
 import SignupPage from "./pages/SignupPage";
+import ResultPage from "./pages/ResultPage";
+import ResultPage2 from "./pages/ResultPage2";
 
 export default function App() {
   return (
@@ -17,6 +19,8 @@ export default function App() {
         <Route path="/list" element={<ListPage />} />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/signup" element={<SignupPage />} />
+        <Route path="/result" element={<ResultPage />} />
+        <Route path="/result2" element={<ResultPage2 />} />
       </Routes>
     </BrowserRouter>
   );
