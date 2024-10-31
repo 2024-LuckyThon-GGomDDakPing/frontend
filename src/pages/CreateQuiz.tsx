@@ -3,7 +3,7 @@ import Navbar from "../components/Navbar";
 import Quiz from "../components/createquiz/Quiz";
 import InputField from "../components/createquiz/InputField";
 import { useEffect, useState } from "react";
-
+import axios from "axios";
 export default function CreateQuiz() {
   const [inputs, setInputs] = useState({
     title: "",
@@ -50,7 +50,23 @@ export default function CreateQuiz() {
   const clearQuizInput = (index: number) => {
     handleQuizInputChange(index, "");
   };
-
+  const handleSubmit = async () => {
+    try {
+      const payload = {
+        memberId: 1,
+        title: inputs.title,
+        content: inputs.subtitle,
+        quizList: quizInputs.map((content, index) => ({
+          content,
+          answer: selectedAnswers[index] ?? false,
+        })),
+      };
+      const response = await axios.post("/api/posts", payload);
+      console.log("게시물이 성공적으로 등록되었습니다:", response.data);
+    } catch (error) {
+      console.error("게시물 등록 중 오류가 발생했습니다:", error);
+    }
+  };
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
@@ -91,7 +107,11 @@ export default function CreateQuiz() {
               onInputChange={(value) => handleQuizInputChange(index, value)} // 입력 값 변경 핸들러 전달
             />
           ))}
-          <button type="submit" className="w-32 h-12 text-lg bg-white/20 rounded-xl">
+          <button
+            type="submit"
+            className="w-32 h-12 text-lg bg-white/20 rounded-xl"
+            onClick={handleSubmit}
+          >
             등록
           </button>
         </div>
