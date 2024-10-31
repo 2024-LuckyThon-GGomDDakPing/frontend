@@ -13,8 +13,12 @@ export default function Navbar({ scrollToBottom }: { scrollToBottom: () => void 
             시작하기
           </button>
         )}
-        <button className="hover:scale-105">로그인</button>
-        <button className="hover:scale-105">회원가입</button>
+        <Link to="/login" className="hover:scale-105">
+          로그인
+        </Link>
+        <Link to="/signup" className="hover:scale-105">
+          회원가입
+        </Link>
       </div>
     </div>
   );
