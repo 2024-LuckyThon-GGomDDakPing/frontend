@@ -4,10 +4,13 @@ import btn2 from "../assets/btn2.png";
 import x from "../assets/x.png";
 
 interface QuizModalProps {
+  memberId: string;
+  title: string;
+  content: string;
   onClose: () => void;
 }
 
-export default function QuizModal({ onClose }: QuizModalProps) {
+export default function QuizModal({ memberId, title, content, onClose }: QuizModalProps) {
   return (
     <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-10 z-50">
       <div className="relative flex flex-col bg-[#001d40]/80  p-8 rounded-2xl shadow-lg  w-[40%] h-[50%]">
@@ -22,14 +25,14 @@ export default function QuizModal({ onClose }: QuizModalProps) {
             <img src={male} alt="성별" />
           </div>
           <div className="flex items-center justify-center mx-[0%] text-[22px]">
-            [박명수]님의 퀴즈
+            {memberId}님의 퀴즈
           </div>
         </div>
         <div className="flex justify-center items-center w-full min-h-[30%] text-[20px]">
-          "맞추면 500원"
+          {title}
         </div>
         <div className="flex justify-center items-center w-full min-h-[30%] text-[18px]">
-          맞추면 500원을 드리는 퀴즈입니다.
+          {content}
         </div>
         <div className="flex flex-row w-full h-full">
           <div className="flex min-w-[50%] items-end text-[17px] opacity-70">
