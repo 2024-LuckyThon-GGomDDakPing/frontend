@@ -1,32 +1,47 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import Main from "../assets/bg.png";
 import Navbar from "../components/Navbar";
 import QuizProblem from "../components/quiz/QuizProblem";
-import { Link } from "react-router-dom";
-
-let quiz = {
-  memberId: 1,
-  title: "김. 다. 오.",
-  content: "김밥 다림쥐 오두막집의 줄임말이다.",
-  quizList: [
-    { content: "나는 해산물을 좋아한다.", answer: true },
-    { content: "나는 정보기술대학 학생이다.", answer: true },
-    { content: "일주일에 1번 만나도 괜찮다", answer: true },
-    { content: "나는 전어를 좋아한다.", answer: true },
-    { content: "술을 싫어한다.", answer: true },
-  ],
-};
-
+import axios from "axios";
+const postId = 1; // Temporary fixed ID for testing
 export default function QuizPage() {
-  const [selectedAnswers, setSelectedAnswers] = useState<boolean[]>(Array(5).fill(null));
-
-  const handleAnswerClick = (index: number, type: boolean) => {
-    const newSelectedAnswers = [...selectedAnswers];
-    newSelectedAnswers[index] = type;
-    setSelectedAnswers(newSelectedAnswers);
-    console.log(newSelectedAnswers);
+  const [quiz, setQuiz] = useState<any>(null);
+  const [selectedAnswers, setSelectedAnswers] = useState<boolean[]>([]);
+  const navigate = useNavigate();
+  useEffect(() => {
+    async function fetchQuiz() {
+      try {
+        const response = await axios.get(`/api/posts/${postId}`);
+        const quizData = response.data;
+        setQuiz(quizData);
+        setSelectedAnswers(Array(quizData.quizDtoList.length).fill(null));
+        console.log(response.data);
+      } catch (error) {
+        console.error("Error fetching quiz:", error);
+      }
+    }
+    fetchQuiz();
+  }, []);
+  const handleAnswerClick = (index: number, answer: boolean) => {
+    const newAnswers = [...selectedAnswers];
+    newAnswers[index] = answer;
+    setSelectedAnswers(newAnswers);
   };
-
+  const handleSubmit = () => {
+    if (!quiz) return;
+    // Count the correct answers
+    const correctCount = quiz.quizDtoList.reduce((count: number, question: any, index: number) => {
+      return count + (question.answer === selectedAnswers[index] ? 1 : 0);
+    }, 0);
+    // Navigate based on score
+    if (correctCount >= 4) {
+      navigate("/result");
+    } else {
+      navigate("/result2");
+    }
+  };
+  if (!quiz) return <div className="flex w-screen h-screen justify-center items-center">Loading...</div>;
   return (
     <div>
       <div
@@ -40,19 +55,21 @@ export default function QuizPage() {
             <p className="w-[770px] text-xl">{quiz.title}</p>
             <p className="w-[770px] text-md">{quiz.content}</p>
           </div>
-          {quiz.quizList.map((quizItem, index) => (
+          {quiz.quizDtoList.map((quizItem: any, index: number) => (
             <QuizProblem
               key={index}
               content={quizItem.content}
-              handleClick={(type) => handleAnswerClick(index, type)}
+              handleClick={(answer: boolean) => handleAnswerClick(index, answer)}
               isSelected={selectedAnswers[index]}
             />
           ))}
-          <Link to="/result">
-            <button type="submit" className="w-32 h-12 text-lg bg-white/20 rounded-xl">
-              제출
-            </button>
-          </Link>
+          <button
+            onClick={handleSubmit}
+            type="submit"
+            className="w-32 h-12 text-lg bg-white/20 rounded-xl"
+          >
+            제출
+          </button>
         </div>
       </div>
     </div>
