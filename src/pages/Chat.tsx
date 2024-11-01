@@ -43,7 +43,7 @@ export default function Chat() {
     setChat((prevChat) => [...prevChat, newMessage]);
 
     try {
-      await axios.post("/api/chat/send", null, {
+      await axios.post("/api/api/chat/send", null, {
         params: { senderId: myId, receiverId: memberId, content: inputValue },
       });
       await handleSee(); // 새로운 메시지 가져오기
@@ -55,10 +55,10 @@ export default function Chat() {
 
   const handleSee = async () => {
     try {
-      const response1 = await axios.get("/api/chat/receive", {
+      const response1 = await axios.get("/api/api/chat/receive", {
         params: { senderId: memberId, receiverId: myId },
       });
-      const response2 = await axios.get("/api/chat/receive", {
+      const response2 = await axios.get("/api/api/chat/receive", {
         params: { senderId: myId, receiverId: memberId },
       });
       const allChat = mergeAndSortMessages(response1.data, response2.data);
@@ -75,7 +75,7 @@ export default function Chat() {
   useEffect(() => {
     const getMemberId = async () => {
       try {
-        const response = await axios.get("/api/members/session-list");
+        const response = await axios.get("/api/api/members/session-list");
         const data = Number(Object.values(Object(response.data))[0]);
         setMyId(data);
       } catch (e) {
