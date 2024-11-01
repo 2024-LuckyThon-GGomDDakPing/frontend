@@ -7,7 +7,7 @@ import { motion } from "framer-motion";
 import { Link, useLocation } from "react-router-dom";
 export default function ResultPage() {
   const location = useLocation();
-  const { profileImg } = location.state;
+  const { profileImg, instagramId, name } = location.state;
   const shakeAnimation = {
     initial: { opacity: 0 },
     animate: {
@@ -79,7 +79,7 @@ export default function ResultPage() {
                 animate={{ opacity: 1 }}
                 transition={{ delay: 3.0, duration: 1.0 }}
               >
-                <span className="flex">박명수</span>
+                <span className="flex">{name}</span>
               </motion.div>
               <motion.div
                 initial={{ opacity: 0 }}
@@ -88,7 +88,7 @@ export default function ResultPage() {
               >
                 <div className="flex flex-row justify-center">
                   <img src={instagram} />
-                  <span className="flex items-center text-[12px]">@real_parkmyeongsoo</span>
+                  <span className="flex items-center text-[12px]">@{instagramId}</span>
                 </div>
               </motion.div>
               <motion.div

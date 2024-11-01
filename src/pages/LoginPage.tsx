@@ -41,11 +41,12 @@ export default function LoginPage() {
         } catch (e) {
           console.log(e);
         }
-        alert("로그인 성공!");
+        alert("로그인 성공");
         navigate("/");
       }
     } catch (e) {
       console.log(e);
+      alert("로그인 실패")
     }
   };
 

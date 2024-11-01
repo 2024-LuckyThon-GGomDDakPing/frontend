@@ -32,7 +32,7 @@ export default function QuizModal({
   };
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-40">
-      <div className="relative flex flex-col bg-[#001d40]/80  p-8 rounded-2xl shadow-lg w-[28%] h-[26%]">
+      <div className="relative flex flex-col bg-[#001d40]/80  p-8 rounded-2xl shadow-lg w-[28%] h-[30%]">
         <button className="absolute text-gray-500 top-3 right-3" onClick={onClose}>
           <img src={x} alt="close" />
         </button>
@@ -44,7 +44,7 @@ export default function QuizModal({
                 alt="profile"
                 className="rounded-full items-end w-[74px] h-[74px] mx-[3%]"
               />
-              {sex === 0 && <img src={male} alt="성별" className="absolute right-0 -bottom-3" />}
+              {sex === 0 && <img src={male} alt="성별" className="absolute right-4 -bottom-1" />}
               {sex === 1 && <img src={female} alt="성별" className="absolute right-0 -bottom-3" />}
             </div>
             <p className="justify-center items-center text-[18px] ml-3">[{nickname}]</p>
