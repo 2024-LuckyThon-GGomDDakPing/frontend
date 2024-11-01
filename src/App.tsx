@@ -8,6 +8,7 @@ import CreateQuiz from "./pages/CreateQuiz";
 import SignupPage from "./pages/SignupPage";
 import ResultPage from "./pages/ResultPage";
 import ResultPage2 from "./pages/ResultPage2";
+import Chat from "./pages/Chat";
 
 export default function App() {
   return (
@@ -21,6 +22,7 @@ export default function App() {
         <Route path="/signup" element={<SignupPage />} />
         <Route path="/result" element={<ResultPage />} />
         <Route path="/result2" element={<ResultPage2 />} />
+        <Route path="/chat" element={<Chat />} />
       </Routes>
     </BrowserRouter>
   );
