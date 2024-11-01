@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { useLocation } from "react-router-dom"
+import { useLocation } from "react-router-dom";
 import Main from "../assets/bg.png";
 import Navbar from "../components/Navbar";
 import QuizProblem from "../components/quiz/QuizProblem";
@@ -9,7 +9,6 @@ import axios from "axios";
 export default function QuizPage() {
   const location = useLocation();
   const { postId, profileImg, nickname } = location.state;
-  console.log("Received postId:", postId);
   const [quiz, setQuiz] = useState<any>(null);
   const [selectedAnswers, setSelectedAnswers] = useState<boolean[]>([]);
   const navigate = useNavigate();
@@ -20,7 +19,6 @@ export default function QuizPage() {
         const quizData = response.data;
         setQuiz(quizData);
         setSelectedAnswers(Array(quizData.quizDtoList.length).fill(null));
-        console.log(response.data);
       } catch (error) {
         console.error("Error fetching quiz:", error);
       }
@@ -34,18 +32,24 @@ export default function QuizPage() {
   };
   const handleSubmit = () => {
     if (!quiz) return;
-    // Count the correct answers
     const correctCount = quiz.quizDtoList.reduce((count: number, question: any, index: number) => {
       return count + (question.answer === selectedAnswers[index] ? 1 : 0);
     }, 0);
-    // Navigate based on score
     if (correctCount >= 4) {
-      navigate("/result", { state: { profileImg, instagramId:quiz.instagramId , name:quiz.name, memberId:quiz.memberId } });
+      navigate("/result", {
+        state: {
+          profileImg,
+          instagramId: quiz.instagramId,
+          name: quiz.name,
+          memberId: quiz.memberId,
+        },
+      });
     } else {
-      navigate("/result2", {state: { nickname }});
+      navigate("/result2", { state: { nickname } });
     }
   };
-  if (!quiz) return <div className="flex w-screen h-screen justify-center items-center">Loading...</div>;
+  if (!quiz)
+    return <div className="flex items-center justify-center w-screen h-screen">Loading...</div>;
   return (
     <div>
       <div
