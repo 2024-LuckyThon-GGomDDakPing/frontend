@@ -16,7 +16,7 @@ export default function QuizPage() {
   useEffect(() => {
     async function fetchQuiz() {
       try {
-        const response = await axios.get(`/api/posts/${postId}`);
+        const response = await axios.get(`/api/api/posts/${postId}`);
         const quizData = response.data;
         setQuiz(quizData);
         setSelectedAnswers(Array(quizData.quizDtoList.length).fill(null));

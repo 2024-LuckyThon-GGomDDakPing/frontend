@@ -122,6 +122,7 @@ export default function SignupPage() {
   const handleSignup = async () => {
     if (validate()) {
       try {
+        const photo = profileImage
         const formData = new FormData();
         formData.append("loginId", loginId);
         formData.append("password", password);
@@ -130,8 +131,9 @@ export default function SignupPage() {
         formData.append("sex", sex);
         formData.append("nickname", nickname);
         formData.append("instagramId", instagramId);
-        formData.append("profileImage", profileImage);
-        const response = await axios.post("/api/members/register", formData, {
+        formData.append("photo", photo);
+        const response = await axios.post("/api/api/members/register", formData, {
+          
           headers: {
             "Content-Type": "multipart/form-data",
           },

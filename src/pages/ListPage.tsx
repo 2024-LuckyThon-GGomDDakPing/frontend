@@ -29,7 +29,7 @@ export default function ListPage() {
   useEffect(() => {
     const fetchQuizList = async () => {
       try {
-        const response = await axios.get("/api/posts");
+        const response = await axios.get("/api/api/posts");
         setQuizList(response.data);
         console.log(response.data);
       } catch (error) {

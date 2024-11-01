@@ -8,7 +8,7 @@ export default function Navbar({ scrollToBottom }: { scrollToBottom: () => void 
 
   const logout = async () => {
     try {
-      const response = await axios.post("/api/members/logout");
+      const response = await axios.post("/api/api/members/logout");
       // console.log(response);
       if (response.status === 200) {
         setIsMemberId(false);
@@ -22,7 +22,7 @@ export default function Navbar({ scrollToBottom }: { scrollToBottom: () => void 
   useEffect(() => {
     const getMemberId = async () => {
       try {
-        const response = await axios.get("/api/members/session-list");
+        const response = await axios.get("/api/api/members/session-list");
         console.log(Object(response.data));
 
         if (response.data && Object.keys(response.data).length > 0) {

@@ -28,7 +28,7 @@ export default function LoginPage() {
     }
     try {
       const response = await axios.post(
-        "/api/members/login",
+        "/api/api/members/login",
         {
           loginId,
           password,
@@ -37,7 +37,7 @@ export default function LoginPage() {
       );
       if (response.status === 200) {
         try {
-          const response = await axios.get("/api/members/session-list");
+          const response = await axios.get("/api/api/members/session-list");
         } catch (e) {
           console.log(e);
         }
