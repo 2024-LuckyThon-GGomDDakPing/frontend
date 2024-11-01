@@ -20,7 +20,7 @@ export default function QuizName({ profileImg, nickname, title, sex, onClick }: 
             alt="profile"
             className="aa flex justify-end rounded-full items-end w-[74px] h-[74px]"
           />
-          {sex === 0 && <img src={male} alt="성별" className="absolute -bottom-4 -right-4"/>}
+          {sex === 0 && <img src={male} alt="성별" className="absolute -bottom-1 -right-1"/>}
           {sex === 1 && <img src={female} alt="성별" className="absolute -bottom-3 -right-3" />}
         </div>
         <div className="flex items-center  justify-center">[{nickname}]</div>

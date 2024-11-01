@@ -40,7 +40,7 @@ export default function QuizPage() {
     }, 0);
     // Navigate based on score
     if (correctCount >= 4) {
-      navigate("/result", { state: { profileImg } });
+      navigate("/result", { state: { profileImg, instagramId:quiz.instagramId , name:quiz.name } });
     } else {
       navigate("/result2", {state: { nickname }});
     }
