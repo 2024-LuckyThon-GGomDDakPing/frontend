@@ -2,8 +2,10 @@ import male from "../assets/male.png";
 import female from "../assets/female.png";
 import btn2 from "../assets/btn2.png";
 import x from "../assets/x.png";
+import { useNavigate } from "react-router-dom";
 
 interface QuizModalProps {
+  postId: number;
   memberId: number;
   nickname: string;
   title: string;
@@ -14,6 +16,7 @@ interface QuizModalProps {
 }
 
 export default function QuizModal({
+  postId,
   nickname,
   title,
   content,
@@ -21,6 +24,12 @@ export default function QuizModal({
   sex,
   onClose,
 }: QuizModalProps) {
+  const navigate = useNavigate();
+
+  const handleQuizStart = () => {
+    // /quiz 경로로 이동하며 postId를 넘깁니다
+    navigate(`/quiz`, { state: { postId, profileImg, nickname } });
+  };
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-40">
       <div className="relative flex flex-col bg-[#001d40]/80  p-8 rounded-2xl shadow-lg w-[28%] h-[26%]">
@@ -53,7 +62,8 @@ export default function QuizModal({
             퀴즈를 4개 이상 맞추시면 보상이 있어요!
           </div>
           <div className="flex items-end justify-end w-full">
-            <button className="flex items-center justify-center w-auto h-auto p-2 text-lg rounded-lg bg-white/25 hover:scale-105">
+            <button onClick={handleQuizStart} 
+            className="flex items-center justify-center w-auto h-auto p-2 text-lg rounded-lg bg-white/25 hover:scale-105">
               <img src={btn2} alt="btn" className="w-6 h-6 pr-1" />
               퀴즈 풀기
             </button>

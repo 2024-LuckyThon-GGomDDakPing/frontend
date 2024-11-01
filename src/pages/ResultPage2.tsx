@@ -3,8 +3,10 @@ import Navbar from "../components/Navbar";
 import unknown from "../assets/unknown.png";
 import instagram from "../assets/instagram.png";
 import { motion } from "framer-motion";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 export default function ResultPage2() {
+  const location = useLocation();
+  const { nickname } = location.state;
   const shakeAnimation = {
     initial: { opacity: 0 },
     animate: {
@@ -23,7 +25,7 @@ export default function ResultPage2() {
         <Navbar />
       </div>
       <div className="flex flex items-center justify-center w-screen h-full">
-        <div className="flex flex-row items-center justify-center w-[40%] h-[75%] max-h-[90%]  p-7 rounded-2xl   mb-10">
+      <div className="flex flex-row items-center justify-center w-[40%] h-auto max-h-[90%]  p-7 rounded-2xl   mb-10">
           <div className="relative flex flex-col items-center bg-gradient-to-t from-[#7a7a7a1e] to-[#e0e0e024] p-8 rounded-2xl shadow-lg w-full h-full mx-1 ml-3">
             <motion.div
               className="flex flex-row justify-center items-center w-full mx-auto mt-0 gap-0.5"
@@ -52,7 +54,7 @@ export default function ResultPage2() {
                 animate="animate"
                 variants={shakeAnimation}
               >
-                <span className="flex text-14px">인연이 생길만큼 문제를 맞추지 못했어요..</span>
+                <span className="flex text-14px mt-4">인연이 생길만큼 문제를 맞추지 못했어요..</span>
               </motion.div>
             </motion.div>
             <div className="flex flex-col justify-center items-center w-full h-full mx-auto gap-0.5 mb-16">
@@ -61,14 +63,14 @@ export default function ResultPage2() {
                 animate={{ opacity: 1 }}
                 transition={{ delay: 3.0, duration: 1.0 }}
               >
-                <img src={unknown} className=" mb-6" />
+                <img src={unknown} className=" my-4" />
               </motion.div>
               <motion.div
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ delay: 3.0, duration: 1.0 }}
               >
-                <span className="flex">???</span>
+                <span className="flex">{nickname}</span>
               </motion.div>
               <motion.div
                 initial={{ opacity: 0 }}

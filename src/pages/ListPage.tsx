@@ -4,7 +4,6 @@ import Main from "../assets/bg.png";
 import Navbar from "../components/Navbar";
 import QuizName from "../components/QuizName";
 import QuizModal from "../components/QuizModal";
-
 interface Quiz {
   postId: number;
   title: string;
@@ -39,7 +38,6 @@ export default function ListPage() {
     };
     fetchQuizList();
   }, []);
-
   return (
     <div className="flex flex-col w-screen h-screen">
       <div
@@ -49,12 +47,12 @@ export default function ListPage() {
       <div className="relative">
         <Navbar />
       </div>
-      <div className="flex flex-col items-center justify-start w-screen h-full">
-        <div className="flex flex-col items-center w-[70%] min-h-[700px] h-auto rounded-3xl shadow-xl overflow-auto backdrop-filter backdrop-blur bg-gradient-to-t from-[#7a7a7a1e] to-[#e0e0e024] bg-opacity-10 px-[1%] py-[1%]">
+      <div className="flex flex-col items-center justify-start w-screen h-full overflow-y-hidden">
+        <div className="flex flex-col items-center w-[70%] min-h-full  rounded-3xl shadow-xl backdrop-filter backdrop-blur bg-gradient-to-t from-[#7a7a7a1e] to-[#e0e0e024] bg-opacity-10 px-[1%] py-[1%] overflow-y-auto">
           <div className="flex flex-col w-full h-[15%] items-center justify-center text-[25px]">
             게시물 목록
           </div>
-          <div className="grid grid-cols-3 justify-items-center items-center w-[95%] h-full">
+          <div className="grid grid-cols-3 justify-items-center items-center w-[95%] min-h-[80%] max-h-[80%] overflow-y-auto">
             {quizList.map((quiz) => (
               <QuizName
                 key={quiz.postId}
@@ -71,6 +69,7 @@ export default function ListPage() {
       {isModalOpen && selectedQuiz && (
         <QuizModal
           onClose={handleCloseModal}
+          postId={selectedQuiz.postId}
           memberId={selectedQuiz.memberId}
           sex={selectedQuiz.sex}
           title={selectedQuiz.title}
