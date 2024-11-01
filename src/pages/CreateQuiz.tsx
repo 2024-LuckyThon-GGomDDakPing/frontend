@@ -4,11 +4,14 @@ import Quiz from "../components/createquiz/Quiz";
 import InputField from "../components/createquiz/InputField";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 export default function CreateQuiz() {
+  const [memberId, setMemberId] = useState(0);
   const [inputs, setInputs] = useState({
     title: "",
     subtitle: "",
   });
+  const navigate = useNavigate();
 
   const handleInputChange = (e: any) => {
     const { name, value } = e.target;
@@ -52,8 +55,9 @@ export default function CreateQuiz() {
   };
   const handleSubmit = async () => {
     try {
+      console.log(memberId);
       const payload = {
-        memberId: 1,
+        memberId: memberId,
         title: inputs.title,
         content: inputs.subtitle,
         quizList: quizInputs.map((content, index) => ({
@@ -62,14 +66,31 @@ export default function CreateQuiz() {
         })),
       };
       const response = await axios.post("/api/posts", payload);
-      console.log("게시물이 성공적으로 등록되었습니다:", response.data);
+      alert("게시물이 성공적으로 등록되었습니다");
+      navigate("/list");
     } catch (error) {
       console.error("게시물 등록 중 오류가 발생했습니다:", error);
+      alert("게시물 등록 중 오류가 발생했습니다");
+      navigate("/list");
     }
   };
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
+  useEffect(() => {
+    const getMemberId = async () => {
+      try {
+        const response = await axios.get("/api/members/session-list");
+        let data = Number(Object.values(Object(response.data))[0]);
+        console.log(data);
+        setMemberId(data);
+      } catch (e) {
+        console.log(e);
+      }
+    };
+    getMemberId();
+  }, []);
+
   return (
     <div>
       <div
