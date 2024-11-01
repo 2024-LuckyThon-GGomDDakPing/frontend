@@ -2,11 +2,12 @@ import Main from "../assets/bg.png";
 import Navbar from "../components/Navbar";
 import congrats from "../assets/congrats.png";
 import congrats2 from "../assets/congrats2.png";
-import face from "../assets/face.png";
 import instagram from "../assets/instagram.png";
 import { motion } from "framer-motion";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 export default function ResultPage() {
+  const location = useLocation();
+  const { profileImg } = location.state;
   const shakeAnimation = {
     initial: { opacity: 0 },
     animate: {
@@ -25,7 +26,7 @@ export default function ResultPage() {
         <Navbar />
       </div>
       <div className="flex flex items-center justify-center w-screen h-full">
-        <div className="flex flex-row items-center justify-center w-[40%] h-[75%] max-h-[90%]  p-7 rounded-2xl   mb-10">
+        <div className="flex flex-row items-center justify-center w-[40%] h-auto max-h-[90%]  p-7 rounded-2xl   mb-10">
           <div className="relative flex flex-col items-center bg-gradient-to-t from-[#7a7a7a1e] to-[#e0e0e024] p-8 rounded-2xl shadow-lg w-full h-full mx-1 ml-3">
             <motion.div
               className="flex flex-row justify-center items-center w-full mx-auto mt-0 gap-0.5"
@@ -65,13 +66,13 @@ export default function ResultPage() {
             >
               <span className="flex text-14px">4문제 이상 맞췄어요!</span>
             </motion.div>
-            <div className="flex flex-col justify-center items-center w-full h-full mx-auto gap-0.5 mb-16">
+            <div className="flex flex-col justify-center items-center w-full h-auto mx-auto gap-0.5 mb-16">
               <motion.div
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ delay: 3.0, duration: 1.0 }}
               >
-                <img src={face} className="scale-150 mb-6" />
+                <img src={profileImg} className="scale-100  rounded-full w-[100px] h-[100px] mt-1" />
               </motion.div>
               <motion.div
                 initial={{ opacity: 0 }}

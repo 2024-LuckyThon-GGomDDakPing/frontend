@@ -1,11 +1,15 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { useLocation } from "react-router-dom"
 import Main from "../assets/bg.png";
 import Navbar from "../components/Navbar";
 import QuizProblem from "../components/quiz/QuizProblem";
 import axios from "axios";
-const postId = 1; // Temporary fixed ID for testing
+
 export default function QuizPage() {
+  const location = useLocation();
+  const { postId, profileImg, nickname } = location.state;
+  console.log("Received postId:", postId);
   const [quiz, setQuiz] = useState<any>(null);
   const [selectedAnswers, setSelectedAnswers] = useState<boolean[]>([]);
   const navigate = useNavigate();
@@ -36,9 +40,9 @@ export default function QuizPage() {
     }, 0);
     // Navigate based on score
     if (correctCount >= 4) {
-      navigate("/result");
+      navigate("/result", { state: { profileImg } });
     } else {
-      navigate("/result2");
+      navigate("/result2", {state: { nickname }});
     }
   };
   if (!quiz) return <div className="flex w-screen h-screen justify-center items-center">Loading...</div>;
