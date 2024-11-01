@@ -1,46 +1,60 @@
-import face from "../assets/face.png";
 import male from "../assets/male.png";
+import female from "../assets/female.png";
 import btn2 from "../assets/btn2.png";
 import x from "../assets/x.png";
 
 interface QuizModalProps {
-  memberId: string;
+  memberId: number;
+  nickname: string;
   title: string;
+  profileImg: string;
   content: string;
+  sex: number;
   onClose: () => void;
 }
 
-export default function QuizModal({ memberId, title, content, onClose }: QuizModalProps) {
+export default function QuizModal({
+  nickname,
+  title,
+  content,
+  profileImg,
+  sex,
+  onClose,
+}: QuizModalProps) {
   return (
-    <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-10 z-50">
-      <div className="relative flex flex-col bg-[#001d40]/80  p-8 rounded-2xl shadow-lg  w-[40%] h-[50%]">
-        <button className="absolute top-3 right-3 text-gray-500" onClick={onClose}>
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-40">
+      <div className="relative flex flex-col bg-[#001d40]/80  p-8 rounded-2xl shadow-lg w-[28%] h-[26%]">
+        <button className="absolute text-gray-500 top-3 right-3" onClick={onClose}>
           <img src={x} alt="close" />
         </button>
-        <div className="flex flex-row justify-center w-full h-auto -ml-[3%]">
-          <div
-            className="flex justify-end items-end min-w-[74px] max-w-[74px] h-[74px] mx-[3%]"
-            style={{ backgroundImage: `url(${face})` }}
-          >
-            <img src={male} alt="성별" />
+        <div className="flex">
+          <div className="relative flex w-24 h-20 flex-col -ml-[3%]">
+            <div className="relative">
+              <img
+                src={profileImg}
+                alt="profile"
+                className="rounded-full items-end w-[74px] h-[74px] mx-[3%]"
+              />
+              {sex === 0 && <img src={male} alt="성별" className="absolute right-0 -bottom-3" />}
+              {sex === 1 && <img src={female} alt="성별" className="absolute right-0 -bottom-3" />}
+            </div>
+            <p className="justify-center items-center text-[18px] ml-3">[{nickname}]</p>
           </div>
-          <div className="flex items-center justify-center mx-[0%] text-[22px]">
-            {memberId}님의 퀴즈
+          <div className="flex flex-col items-center justify-center ml-8">
+            <div className="flex justify-center items-center w-full min-h-[30%] text-[20px]">
+              {title}
+            </div>
+            <p className="flex text-center text-[18px]">{content}</p>
           </div>
         </div>
-        <div className="flex justify-center items-center w-full min-h-[30%] text-[20px]">
-          {title}
-        </div>
-        <div className="flex justify-center items-center w-full min-h-[30%] text-[18px]">
-          {content}
-        </div>
+
         <div className="flex flex-row w-full h-full">
-          <div className="flex min-w-[50%] items-end text-[17px] opacity-70">
+          <div className="flex items-end text-sm opacity-70">
             퀴즈를 4개 이상 맞추시면 보상이 있어요!
           </div>
-          <div className="flex w-full justify-end items-end">
-            <button className="flex items-center justify-center text-xl bg-white/25 rounded-lg hover:scale-105 w-auto h-auto p-2">
-              <img src={btn2} alt="btn" className="w-[31.2px] h-[31.2px] text-[20px]" />
+          <div className="flex items-end justify-end w-full">
+            <button className="flex items-center justify-center w-auto h-auto p-2 text-lg rounded-lg bg-white/25 hover:scale-105">
+              <img src={btn2} alt="btn" className="w-6 h-6 pr-1" />
               퀴즈 풀기
             </button>
           </div>
