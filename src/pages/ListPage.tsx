@@ -48,11 +48,11 @@ export default function ListPage() {
         <Navbar />
       </div>
       <div className="flex flex-col items-center justify-start w-screen h-full overflow-y-hidden">
-        <div className="flex flex-col items-center w-[70%] min-h-full  rounded-3xl shadow-xl backdrop-filter backdrop-blur bg-gradient-to-t from-[#7a7a7a1e] to-[#e0e0e024] bg-opacity-10 px-[1%] py-[1%] overflow-y-auto">
+        <div className="flex flex-col items-center w-[1000px] h-[650px] rounded-3xl shadow-xl backdrop-filter backdrop-blur bg-gradient-to-t from-[#7a7a7a1e] to-[#e0e0e024] bg-opacity-10 px-[1%]  overflow-y-auto">
           <div className="flex flex-col w-full h-[15%] items-center justify-center text-[25px]">
             게시물 목록
           </div>
-          <div className="grid grid-cols-3 justify-items-center items-center w-[95%] min-h-[80%] max-h-[80%] overflow-y-auto">
+          <div className="grid grid-cols-3 justify-items-center items-center w-[95%] h-[75%] overflow-y-auto">
             {quizList.map((quiz) => (
               <QuizName
                 key={quiz.postId}
