@@ -9,6 +9,7 @@ import SignupPage from "./pages/SignupPage";
 import ResultPage from "./pages/ResultPage";
 import ResultPage2 from "./pages/ResultPage2";
 import Chat from "./pages/Chat";
+import ChatList from "./pages/ChatList";
 
 export default function App() {
   return (
@@ -23,6 +24,7 @@ export default function App() {
         <Route path="/result" element={<ResultPage />} />
         <Route path="/result2" element={<ResultPage2 />} />
         <Route path="/chat" element={<Chat />} />
+        <Route path="/chatlist" element={<ChatList />} />
       </Routes>
     </BrowserRouter>
   );

@@ -63,7 +63,7 @@ export default function CreateQuiz() {
           answer: selectedAnswers[index] ?? false,
         })),
       };
-      const response = await axios.post("/api/posts", payload);
+      const response = await axios.post("/api/api/posts", payload);
       alert("게시물이 성공적으로 등록되었습니다");
       navigate("/list");
     } catch (error) {
@@ -78,7 +78,7 @@ export default function CreateQuiz() {
   useEffect(() => {
     const getMemberId = async () => {
       try {
-        const response = await axios.get("/api/members/session-list");
+        const response = await axios.get("/api/api/members/session-list");
         let data = Number(Object.values(Object(response.data))[0]);
         setMemberId(data);
       } catch (e) {
