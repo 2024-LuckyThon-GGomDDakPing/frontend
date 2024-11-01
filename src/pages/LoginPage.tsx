@@ -36,7 +36,11 @@ export default function LoginPage() {
         { withCredentials: true }
       );
       if (response.status === 200) {
-        console.log(response);
+        try {
+          const response = await axios.get("/api/members/session-list");
+        } catch (e) {
+          console.log(e);
+        }
         alert("로그인 성공!");
         navigate("/");
       }
@@ -70,7 +74,7 @@ export default function LoginPage() {
                   value={loginId}
                   onChange={(e) => {
                     setIoginId(e.target.value);
-                    setError(""); // 입력 시 에러 메시지 초기화
+                    setError("");
                   }}
                   onKeyDown={handleKeyDown}
                 />
