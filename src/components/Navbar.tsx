@@ -49,9 +49,9 @@ export default function Navbar({ scrollToBottom }: { scrollToBottom: () => void 
           </button>
         )}
         {isMemberId ? (
-          <button type="button" className="hover:scale-105" onClick={logout}>
+          <Link to="/" type="button" className="hover:scale-105" onClick={logout}>
             로그아웃
-          </button>
+          </Link>
         ) : (
           <Link to="/login" className="hover:scale-105">
             로그인

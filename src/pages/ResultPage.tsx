@@ -4,16 +4,16 @@ import congrats from "../assets/congrats.png";
 import congrats2 from "../assets/congrats2.png";
 import instagram from "../assets/instagram.png";
 import { motion } from "framer-motion";
-import {  useLocation } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 export default function ResultPage() {
   const navigate = useNavigate();
   const location = useLocation();
   const { profileImg, instagramId, name, memberId } = location.state;
   const handleChatClick = () => {
-   navigate(`/chat`, { state: { profileImg, instagramId, name, memberId } });
+    navigate(`/chat`, { state: { profileImg, instagramId, name, memberId } });
   };
-  
+
   const shakeAnimation = {
     initial: { opacity: 0 },
     animate: {
@@ -31,7 +31,7 @@ export default function ResultPage() {
       <div className="relative">
         <Navbar />
       </div>
-      <div className="flex flex items-center justify-center w-screen h-full">
+      <div className="flex items-center justify-center w-screen h-full">
         <div className="flex flex-row items-center justify-center w-[40%] h-auto max-h-[90%]  p-7 rounded-2xl   mb-10">
           <div className="relative flex flex-col items-center bg-gradient-to-t from-[#7a7a7a1e] to-[#e0e0e024] p-8 rounded-2xl shadow-lg w-full h-full mx-1 ml-3">
             <motion.div
@@ -49,7 +49,7 @@ export default function ResultPage() {
               />
 
               <motion.span
-                className="flex w-full justify-center mx-5 text-3xl"
+                className="flex justify-center w-full mx-5 text-3xl"
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ delay: 0.5, duration: 0.5 }}
@@ -78,7 +78,10 @@ export default function ResultPage() {
                 animate={{ opacity: 1 }}
                 transition={{ delay: 3.0, duration: 1.0 }}
               >
-                <img src={profileImg} className="scale-100  rounded-full w-[100px] h-[100px] mt-1" />
+                <img
+                  src={profileImg}
+                  className="scale-100  rounded-full w-[100px] h-[100px] mt-1"
+                />
               </motion.div>
               <motion.div
                 initial={{ opacity: 0 }}
@@ -111,11 +114,11 @@ export default function ResultPage() {
                 animate={{ opacity: 1 }}
                 transition={{ delay: 6, duration: 1.0 }}
               >
-                <p className="text-sm text-gray-300 mt-5 -mb-5">
+                <p className="mt-5 -mb-5 text-sm text-gray-300">
                   당신의 인연에게 말을 걸어보세요!{" "}
                   <span
                     onClick={handleChatClick}
-                    className="text-blue-500 cursor-pointer hover:scale-105 transition-transform duration-100 inline-block"
+                    className="inline-block text-blue-500 transition-transform duration-100 cursor-pointer hover:scale-105"
                   >
                     채팅하기
                   </span>

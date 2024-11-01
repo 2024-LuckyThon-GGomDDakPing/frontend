@@ -31,7 +31,6 @@ export default function ListPage() {
       try {
         const response = await axios.get("/api/posts");
         setQuizList(response.data);
-        console.log(response.data);
       } catch (error) {
         console.error("Failed to fetch quiz list", error);
       }

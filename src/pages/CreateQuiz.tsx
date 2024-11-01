@@ -36,7 +36,6 @@ export default function CreateQuiz() {
     const newSelectedAnswers = [...selectedAnswers];
     newSelectedAnswers[index] = type; // 선택된 답변만 업데이트
     setSelectedAnswers(newSelectedAnswers);
-    console.log(newSelectedAnswers);
   };
 
   // 각 문제의 입력 값을 관리하기 위한 상태
@@ -55,7 +54,6 @@ export default function CreateQuiz() {
   };
   const handleSubmit = async () => {
     try {
-      console.log(memberId);
       const payload = {
         memberId: memberId,
         title: inputs.title,
@@ -82,7 +80,6 @@ export default function CreateQuiz() {
       try {
         const response = await axios.get("/api/members/session-list");
         let data = Number(Object.values(Object(response.data))[0]);
-        console.log(data);
         setMemberId(data);
       } catch (e) {
         console.log(e);
