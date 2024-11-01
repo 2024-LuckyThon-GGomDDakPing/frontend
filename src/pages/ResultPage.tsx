@@ -4,10 +4,16 @@ import congrats from "../assets/congrats.png";
 import congrats2 from "../assets/congrats2.png";
 import instagram from "../assets/instagram.png";
 import { motion } from "framer-motion";
-import { Link, useLocation } from "react-router-dom";
+import {  useLocation } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 export default function ResultPage() {
+  const navigate = useNavigate();
   const location = useLocation();
-  const { profileImg, instagramId, name } = location.state;
+  const { profileImg, instagramId, name, memberId } = location.state;
+  const handleChatClick = () => {
+   navigate(`/chat`, { state: { profileImg, instagramId, name, memberId } });
+  };
+  
   const shakeAnimation = {
     initial: { opacity: 0 },
     animate: {
@@ -106,13 +112,13 @@ export default function ResultPage() {
                 transition={{ delay: 6, duration: 1.0 }}
               >
                 <p className="text-sm text-gray-300 mt-5 -mb-5">
-                  다른 퀴즈도 풀어보고싶다면?{" "}
-                  <Link
-                    to="/list"
+                  당신의 인연에게 말을 걸어보세요!{" "}
+                  <span
+                    onClick={handleChatClick}
                     className="text-blue-500 cursor-pointer hover:scale-105 transition-transform duration-100 inline-block"
                   >
-                    돌아가기
-                  </Link>
+                    채팅하기
+                  </span>
                 </p>
               </motion.div>
             </div>
